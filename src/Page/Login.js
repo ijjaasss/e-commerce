@@ -15,7 +15,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`/api/v1/auth/login`, { userName, password });
+      const response = await axios.post(`https://ijjasss.onrender.com/api/v1/auth/login`, { userName, password });
 
       if (response.data.user.isAdmin) {
         sessionStorage.setItem('username', userName);

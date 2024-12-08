@@ -34,9 +34,9 @@ const refrenceNum=searchQuery.get('reference')
   
  
    
-    await axios.patch(`/api/v1//userbuy/${id}`,{buy:updatedbuy})
+    await axios.patch(`https://ijjasss.onrender.com/api/v1//userbuy/${id}`,{buy:updatedbuy})
 
-  await  axios.patch(`/api/v1/user/${id}`,{temp:100}).then(()=>{
+  await  axios.patch(`https://ijjasss.onrender.com/api/v1/user/${id}`,{temp:100}).then(()=>{
     setCartt([])
   })
    

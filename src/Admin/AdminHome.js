@@ -17,9 +17,12 @@ function AdminHome() {
         if (username!==process.env.REACT_APP_USER_NAME) {
           navigate('/login');
         }
-        const usee = await axios.get('/api/admin/user');
-        setUsers(usee.data.users);
-        const response = await axios.get('api/v1/products');
+        const usee = await axios.get('https://ijjasss.onrender.com/api/v1/auth/allusers');
+        setUsers(usee.data)
+      
+        
+        // setUsers(usee.data.users);
+        const response = await axios.get('https://ijjasss.onrender.com/api/v1/products');
         setProduct(response.data);
 
       
@@ -30,23 +33,7 @@ function AdminHome() {
 
     fetchUser(); 
   }, [navigate]);
-  const fetchUsers = async () => {
-    try {
-      axios.get('/api/admin/user')
-      .then(response => {
-          console.log(response.data);
-      })
-      .catch(error => {
-          console.error('Error fetching admin data:', error);
-      });
-     
-     
-    } catch (error) {
-        console.error('Error fetching users:', error);
-    }
-};
-fetchUsers()
-
+ 
   return (
     <>
     

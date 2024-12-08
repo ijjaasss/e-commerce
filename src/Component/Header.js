@@ -13,7 +13,7 @@ function Header() {
  
   const handleLogout = async () => {
     try {
-      await axios.post('/api/v1/auth/logout');
+      await axios.post('https://ijjasss.onrender.com/api/v1/auth/logout');
       
       // Clear auth context and sessionStorage
       setAuth({});

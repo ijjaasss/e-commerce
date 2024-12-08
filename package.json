@@ -1,6 +1,5 @@
 {
   "name": "furnitur-shop",
-  "proxy": "https://ijjasss.onrender.com",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

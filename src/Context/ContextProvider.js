@@ -37,7 +37,7 @@ const [auth,setAuth]=useState({
   const FindProduct = async (productId) => {
     try {
       
-      const response = await axios.get(`/api/v1/products`);
+      const response = await axios.get(`https://ijjasss.onrender.com/api/v1/products`);
       const data = response.data;
       var a=data.filter((val)=>val._id===productId)       
       setSelectingproduct(a[0])
@@ -65,7 +65,7 @@ const [auth,setAuth]=useState({
 
  
       setCartt(updatedCart)
-      await axios.patch(`/api/v1/updatecart/${id}`, { temp: updatedCart }).then(()=>{
+      await axios.patch(`https://ijjasss.onrender.com/api/v1/updatecart/${id}`, { temp: updatedCart }).then(()=>{
        
       })
    
@@ -85,7 +85,7 @@ const [auth,setAuth]=useState({
       });
    
       setCartt(updatedCart)
-      await axios.patch(`/api/v1/updatecart/${id}`, { temp: updatedCart }).then(()=>{
+      await axios.patch(`https://ijjasss.onrender.com/api/v1/updatecart/${id}`, { temp: updatedCart }).then(()=>{
        
       })
       
@@ -100,7 +100,7 @@ const [auth,setAuth]=useState({
     
       
       setCartt(updatedCart)
-         await axios.patch(`/api/v1/updatecart/${id}`, { temp: updatedCart }).then(()=>{
+         await axios.patch(`https://ijjasss.onrender.com/api/v1/updatecart/${id}`, { temp: updatedCart }).then(()=>{
          
         })
       
@@ -121,9 +121,13 @@ const [auth,setAuth]=useState({
   useEffect(() => {
     const fetchUserCart = async () => {
       try {
-        const response = await axios.get(`/api/v1/products`);
+        const response = await axios.get(`https://ijjasss.onrender.com/api/v1/products`);
+       
+        
         setCart(response.data);
-        const res = await axios.get(`/api/v1/auth/findusers/${id}`);
+        const res = await axios.get(`https://ijjasss.onrender.com/api/v1/auth/findusers/${id}`);
+       
+       
         setUser(res.data)
         setCartt(res.data.cart);
         setBuy(res.data.buy)
@@ -133,6 +137,8 @@ const [auth,setAuth]=useState({
         
         
         const data=JSON.parse(sessionStorage.getItem('user'))
+        
+        
         if(data){
           const parsData=JSON.parse(data)
           setAuth({
@@ -141,9 +147,7 @@ const [auth,setAuth]=useState({
             token:parsData.token
           })
         }
-      
-      
-        
+    
       } catch (err) {
         console.error('Error fetching data:', err);
       }

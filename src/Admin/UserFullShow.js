@@ -27,7 +27,7 @@ function UserFullShow() {
         if (username!==process.env.REACT_APP_USER_NAME) {
           navigate('/login');
         }
-                const response = await axios.get(`/api/v1/auth/findusers/${id}`); 
+                const response = await axios.get(`https://ijjasss.onrender.com/api/v1/auth/findusers/${id}`); 
                 setUser(response.data);
                 setBuy(response.data.buy)
                 setCart(response.data.cart)
@@ -46,7 +46,7 @@ function UserFullShow() {
     const blockHandle = async () => {
         try {
           
-            await axios.patch(`/api/v1/auth/blockunblock/${id}`, { isBlock: !isBloked });
+            await axios.patch(`https://ijjasss.onrender.com/api/v1/auth/blockunblock/${id}`, { isBlock: !isBloked });
          
           setIsBloked(!isBloked);
         
@@ -115,7 +115,7 @@ function UserFullShow() {
                                             </div>
                                             <div className="col-6 mb-3">
                                                 <h6>Cart product</h6>
-                                                <p className="text-muted"><ul>{cart? cart.map(p=><li>{p.title}<br/> id:{p.id} &nbsp; q:{p.quntity}<hr /></li>) :'No cart' }</ul></p>
+                                                <p className="text-muted"><ul>{cart? cart.map(p=><li>{p.title}<br/> id:{p._id} &nbsp; q:{p.quntity}<hr /></li>) :'No cart' }</ul></p>
                                             </div>
                                         </div>
                                         <div className="d-flex justify-content-start">

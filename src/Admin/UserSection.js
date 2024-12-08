@@ -21,8 +21,8 @@ function UserSection() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get('/api/admin/user');
-        setUsers(response.data.users);
+        const response = await axios.get('https://ijjasss.onrender.com/api/v1/auth/allusers');
+        setUsers(response.data);
         let username = sessionStorage.getItem('username');
         if (!username) {
           navigate('/login');

@@ -23,7 +23,7 @@ function ProductFilter() {
           
 
           
-       const response=await axios.get(`/api/v1/auth/findusers/${id}`)
+       const response=await axios.get(`https://ijjasss.onrender.com/api/v1/auth/findusers/${id}`)
         
             const cartData= response.data.cart;
            
@@ -38,7 +38,7 @@ function ProductFilter() {
            
            
            
-            await axios.patch(`/api/v1/user/${id}`, { temp: selectingproduct }).then(()=>{
+            await axios.patch(`https://ijjasss.onrender.com/api/v1/user/${id}`, { temp: selectingproduct }).then(()=>{
               setCartt(prevCartt => [...prevCartt, selectingproduct])
               console.log(cartt);
               

@@ -69,13 +69,13 @@ function ProductSection() {
     try {
       if (editMode) {
         alert('updated product');
-        await axios.put(`/api/v1/editproduct/${newProduct.id}`, newProduct);
+        await axios.put(`https://ijjasss.onrender.com/api/v1/editproduct/${newProduct.id}`, newProduct);
         setCart((prevCart) =>
           prevCart.map((p) => (p.id === newProduct.id ? newProduct : p))
         );
       } else {
         alert('addProduct');
-        const response = await axios.post('/api/v1/addproduct', newProduct);
+        const response = await axios.post('https://ijjasss.onrender.com/api/v1/addproduct', newProduct);
         setCart((prevCart) => [...prevCart, response.data]);
       }
       closeModal();
@@ -86,7 +86,7 @@ function ProductSection() {
 
   const handleDeleteProduct = async (productId) => {
     try {
-      await axios.delete(`/api/v1/deleteproduct/${productId}`);
+      await axios.delete(`https://ijjasss.onrender.com/api/v1/deleteproduct/${productId}`);
       setCart((prevCart) => prevCart.filter((p) => p.id !== productId));
       window.location.reload();
     } catch (error) {

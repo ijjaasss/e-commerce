@@ -25,7 +25,7 @@ function Cart() {
   useEffect(() => {
     const fetchUserCart = async () => {
       try {
-        const response = await axios.get(`/api/v1/auth/findusers/${id}`);
+        const response = await axios.get(`https://ijjasss.onrender.com/api/v1/auth/findusers/${id}`);
         setCart(response.data.cart);
       } catch (err) {
         console.error('Error fetching user cart:', err);
@@ -40,8 +40,8 @@ function Cart() {
       if (product.length > 0) {
         const amount = totalPrice(cart) * 100;
 
-        const { data: { key } } = await axios.get('/api/getkey');
-        const { data: { order } } = await axios.post('/api/route/checkout', { amount });
+        const { data: { key } } = await axios.get('https://ijjasss.onrender.com/api/getkey');
+        const { data: { order } } = await axios.post('https://ijjasss.onrender.com/api/route/checkout', { amount });
 
         const options = {
           key, // Replace with your Razorpay public key
@@ -51,7 +51,7 @@ function Cart() {
           description: 'Online Furniture Shop',
           image: "image",
           order_id: order.id, // Razorpay order ID from the backend
-          callback_url: "/api/route/paymentverification",
+          callback_url: "https://ijjasss.onrender.com/api/route/paymentverification",
           prefill: {
             name: user.name,
             email: user.email,
