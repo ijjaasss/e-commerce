@@ -1,40 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 function AdminNavBar() {
-  // Style objects for active and normal states
-  const normalLinkStyle = {
-    padding: '10px 20px',
-    borderRadius: '30px',
-    margin: '0 10px',
-    color: '#fff',
-    backgroundColor: '#007bff',
-    textDecoration: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    fontWeight: 'bold',
-    transition: 'background-color 0.3s ease, transform 0.3s ease', // Smooth hover and active transition
+  const [activeLink, setActiveLink] = useState('dashboard');
+
+  const handleLinkClick = (link) => {
+    setActiveLink(link);
   };
-
-  const activeLinkStyle = {
-    ...normalLinkStyle,
-    backgroundColor: '#0056b3',  // Darker blue for active state
-    transform: 'scale(1.05)', // Slight scale effect on active link
-  };
-
-
 
   return (
     <div className="container mt-4">
       <header>
-        <nav className="navbar navbar-expand-lg navbar-dark bg-gradient shadow-lg rounded-5">
+        <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-lg rounded-3">
           {/* Logo or Branding */}
-          <NavLink className="navbar-brand text-white font-weight-bold fs-4" to="/adminhome">
-            <i className="fas fa-cogs" style={{ marginRight: '8px' }}></i> Admin Panel
+          <NavLink className="navbar-brand text-primary font-weight-bold fs-4" to="/adminhome">
+            Admin Panel
           </NavLink>
 
           {/* Navbar Toggler (for mobile responsiveness) */}
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
             <span className="navbar-toggler-icon"></span>
           </button>
 
@@ -45,13 +37,10 @@ function AdminNavBar() {
               <li className="nav-item">
                 <NavLink
                   to="/adminhome"
-                  style={({ isActive }) => isActive ? activeLinkStyle : normalLinkStyle}
-                  exact
-                  className="nav-link"
-                  onMouseEnter={(e) => e.target.style.backgroundColor = '#0056b3'}  // Hover effect
-                  onMouseLeave={(e) => e.target.style.backgroundColor = '#007bff'}  // Reset hover effect
+                  className={`nav-link ${activeLink === 'dashboard' ? 'active' : ''}`}
+                  onClick={() => handleLinkClick('dashboard')}
                 >
-                  <i className="fas fa-tachometer-alt" style={{ marginRight: '8px' }}></i> Dashboard
+                  Dashboard
                 </NavLink>
               </li>
 
@@ -59,12 +48,10 @@ function AdminNavBar() {
               <li className="nav-item">
                 <NavLink
                   to="/adminproduct"
-                  style={({ isActive }) => isActive ? activeLinkStyle : normalLinkStyle}
-                  className="nav-link"
-                  onMouseEnter={(e) => e.target.style.backgroundColor = '#0056b3'}  // Hover effect
-                  onMouseLeave={(e) => e.target.style.backgroundColor = '#007bff'}  // Reset hover effect
+                  className={`nav-link ${activeLink === 'product' ? 'active' : ''}`}
+                  onClick={() => handleLinkClick('product')}
                 >
-                  <i className="fas fa-box" style={{ marginRight: '8px' }}></i> Product Section
+                  Product Section
                 </NavLink>
               </li>
 
@@ -72,32 +59,33 @@ function AdminNavBar() {
               <li className="nav-item">
                 <NavLink
                   to="/allusers"
-                  style={({ isActive }) => isActive ? activeLinkStyle : normalLinkStyle}
-                  className="nav-link"
-                  onMouseEnter={(e) => e.target.style.backgroundColor = '#0056b3'}  // Hover effect
-                  onMouseLeave={(e) => e.target.style.backgroundColor = '#007bff'}  // Reset hover effect
+                  className={`nav-link ${activeLink === 'user' ? 'active' : ''}`}
+                  onClick={() => handleLinkClick('user')}
                 >
-                  <i className="fas fa-users" style={{ marginRight: '8px' }}></i> User Section
+                  User Section
                 </NavLink>
               </li>
 
               {/* Log Out Link */}
               <li className="nav-item">
-               <NavLink
+                <NavLink
                   to="/login"
-                  style={({ isActive }) => isActive ? activeLinkStyle : normalLinkStyle}
-                  className="nav-link"
-                  onClick={()=>sessionStorage.clear()}
-                  onMouseEnter={(e) => e.target.style.backgroundColor = '#0056b3'}  // Hover effect
-                  onMouseLeave={(e) => e.target.style.backgroundColor = '#007bff'}  // Reset hover effect
+                  className={`nav-link ${activeLink === 'logout' ? 'active' : ''}`}
+                  onClick={() => {
+                    sessionStorage.clear();
+                    handleLinkClick('logout');
+                  }}
                 >
-                  <i className="fas fa-sign-out-alt" style={{ marginRight: '8px' }}></i> Log Out
+                  Log Out
                 </NavLink>
               </li>
             </ul>
           </div>
         </nav>
       </header>
+
+      {/* Main Content */}
+      
     </div>
   );
 }
