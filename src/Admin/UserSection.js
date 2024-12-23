@@ -22,7 +22,9 @@ function UserSection() {
     const fetchUsers = async () => {
       try {
         const response = await axios.get('https://ijjasss.onrender.com/api/v1/auth/allusers');
-        setUsers(response.data);
+        var temp=response.data.filter((val)=>val.role!==1)
+  
+        setUsers(temp);
         let username = sessionStorage.getItem('username');
         if (!username) {
           navigate('/login');
