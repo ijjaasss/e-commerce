@@ -12,11 +12,7 @@ function AdminHome() {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        let username = sessionStorage.getItem('username');
-        
-        if (username!==process.env.REACT_APP_USER_NAME) {
-          navigate('/login');
-        }
+  
         const usee = await axios.get('https://ijjasss.onrender.com/api/v1/auth/allusers');
         setUsers(usee.data)
       

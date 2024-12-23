@@ -53,7 +53,7 @@ function ProductSection() {
       price: '',
       image: ''
     });
-    window.location.reload();
+
   };
 
   const handleInputChange = (e) => {
@@ -70,9 +70,7 @@ function ProductSection() {
       if (editMode) {
         alert('updated product');
         await axios.put(`https://ijjasss.onrender.com/api/v1/editproduct/${newProduct.id}`, newProduct);
-        setCart((prevCart) =>
-          prevCart.map((p) => (p.id === newProduct.id ? newProduct : p))
-        );
+       window.location.reload()
       } else {
         alert('addProduct');
         const response = await axios.post('https://ijjasss.onrender.com/api/v1/addproduct', newProduct);
@@ -87,12 +85,14 @@ function ProductSection() {
   const handleDeleteProduct = async (productId) => {
     try {
       await axios.delete(`https://ijjasss.onrender.com/api/v1/deleteproduct/${productId}`);
-      setCart((prevCart) => prevCart.filter((p) => p.id !== productId));
-      window.location.reload();
+      const response = await axios.get(`https://ijjasss.onrender.com/api/v1/products`);
+        
+      setCart(response.data);
     } catch (error) {
       console.error('Error deleting product:', error);
     }
   };
+
 
   useEffect(() => {
     const fetchinggg = () => {
@@ -391,6 +391,7 @@ function ProductSection() {
             />
           </div>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
+            
             <button
               type="submit"
               style={{
